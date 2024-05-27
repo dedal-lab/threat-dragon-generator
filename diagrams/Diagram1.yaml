@@ -1,4 +1,5 @@
 title: "Diagram1"
+description: "Diagram1 STRIDE modeling"
 nodes:
   - name: MyProcess
     type: process

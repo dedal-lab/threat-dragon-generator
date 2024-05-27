@@ -39,7 +39,7 @@ impl MappingFromInputDiagram for Diagram {
             id: 0,
             title: input_diagram.title.clone(),
             diagram_type: "STRIDE".to_string(),
-            placeholder: "New STRIDE diagram description".to_string(),
+            placeholder: input_diagram.description.clone(),
             thumbnail: "./public/content/images/thumbnail.stride.jpg".to_string(),
             version: config.threat_dragon_version.clone(),
             cells,

@@ -8,6 +8,7 @@ use super::threat::Threat;
 #[serde(rename_all = "camelCase")]
 pub struct InputDiagram {
     pub title: String,
+    pub description: String,
     pub nodes: Vec<Node>,
 }
 
