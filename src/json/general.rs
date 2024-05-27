@@ -20,7 +20,7 @@ impl ThreatModeling {
     pub fn new(input_diagram: &Vec<InputDiagram>, config: &Config) -> Self {
         Self {
             version: config.threat_dragon_version.clone(),
-            summary: Summary::new(),
+            summary: Summary::new(config),
             detail: Detail::from_input_diagram(&input_diagram, &config),
         }
     }
@@ -36,11 +36,11 @@ struct Summary {
 }
 
 impl Summary {
-    fn new() -> Self {
+    fn new(config: &Config) -> Self {
         Self {
-            title: "test".to_string(),
-            owner: "".to_string(),
-            description: "".to_string(),
+            title: config.title.clone(),
+            owner: config.owner.clone(),
+            description: config.description.clone(),
             id: 0,
         }
     }
