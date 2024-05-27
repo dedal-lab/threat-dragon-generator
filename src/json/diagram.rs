@@ -291,9 +291,10 @@ impl Diagram {
                                 + margin * 2,
                         }),
                         attrs: Some(Attrs {
-                            text: Some(Text {
+                            header_text: Some(Text {
                                 text: trust_boundary.clone(),
                             }),
+                            text: None,
                             body: None,
                             line: None,
                         }),
@@ -362,7 +363,7 @@ impl MappingFromInputNode for Cell {
             visible: None,
             shape: input_node.type_node.to_string(),
             id: Uuid::new_v4().to_string(),
-            z_index: 0,
+            z_index: 1,
             connector: None,
             data: CellData::from_input_diagram(&input_node, &config),
             source: None,
@@ -390,6 +391,8 @@ struct Size {
 #[serde(rename_all = "camelCase")]
 struct Attrs {
     #[serde(skip_serializing_if = "Option::is_none")]
+    header_text: Option<Text>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     text: Option<Text>,
     #[serde(skip_serializing_if = "Option::is_none")]
     body: Option<Body>,
@@ -399,8 +402,9 @@ struct Attrs {
 
 impl MappingFromInputNode for Attrs {
     fn from_input_diagram(input_node: &Node, config: &Config) -> Self {
-        let (text, body, line) = match input_node.type_node {
+        let (header_text, text, body, line) = match input_node.type_node {
             TypeNode::Process => (
+                None,
                 Some(Text::from_input_diagram(&input_node, &config)),
                 Some(Body::from_input_diagram(&input_node, &config)),
                 None,
@@ -408,11 +412,17 @@ impl MappingFromInputNode for Attrs {
             TypeNode::Flow => (
                 None,
                 None,
+                None,
                 Some(Line::from_input_diagram(&input_node, &config)),
             ),
         };
 
-        Self { text, body, line }
+        Self {
+            header_text,
+            text,
+            body,
+            line,
+        }
     }
 }
 
