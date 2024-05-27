@@ -1,0 +1,85 @@
+title: "Diagram1"
+nodes:
+  - name: MyProcess
+    type: process
+    description: "Ecoute"
+    outOfScope: false
+    threats:
+      - title: "New STRIDE threat"
+        status: "Open"       # Open, NotApplicable, Mitigated
+        severity: "Medium"   # Low, Medium, High
+        type: "InformationDisclosure"     # Spoofing, Tampering, Repudiation, InformationDisclosure, DenialOfService, ElevationOfPrivilege
+        description: "Provide a description for this threat"
+        mitigation: "Provide remediation for this threat or a reason if status is N/A"
+  - name: RabbitMq
+    type: process
+    description: "Message broker"
+    outOfScope: true
+    trustBoundary: Enablers
+    threats: []
+  - name: Prometheus
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers"
+    threats: []
+  # - name: Kafka
+  #   type: process
+  #   description: "Metrics server"
+  #   outOfScope: true
+  #   trustBoundary: "Enablers"
+  #   threats: []
+  # - name: Minio
+  #   type: process
+  #   description: "Metrics server"
+  #   outOfScope: true
+  #   trustBoundary: "Enablers"
+  #   threats: []
+  # - name: Postgres
+  #   type: process
+  #   description: "Metrics server"
+  #   outOfScope: true
+  #   trustBoundary: "Enablers"
+  #   threats: []
+  # - name: influxdb
+  #   type: process
+  #   description: "Metrics server"
+  #   outOfScope: true
+  #   trustBoundary: "Enablers"
+  #   threats: []
+  - name: RabbitMq2
+    type: process
+    description: "Message broker"
+    outOfScope: true
+    trustBoundary: "Enablers2"
+    threats: []
+  # - name: Prometheus2
+  #   type: process
+  #   description: "Metrics server"
+  #   outOfScope: true
+  #   trustBoundary: "Enablers2"
+  #   threats: []
+  # - name: Kafka2
+  #   type: process
+  #   description: "Metrics server"
+  #   outOfScope: true
+  #   trustBoundary: "Enablers2"
+  #   threats: []
+  # - name: Minio2
+  #   type: process
+  #   description: "Metrics server"
+  #   outOfScope: true
+  #   trustBoundary: "Enablers2"
+  #   threats: []
+  - name: PROC_RABBIT
+    type: flow
+    source: MyProcess      # Use field "name" defined inside the node source
+    destination: RabbitMq  # Use field "name" defined inside the node destination
+    description: "Publish message"
+    threats:
+      - title: "New STRIDE threat"
+        status: "Open"       # Open, NotApplicable, Mitigated
+        severity: "Medium"   # Low, Medium, High
+        type: "DenialOfService"     # Spoofing, Tampering, Repudiation, InformationDisclosure, DenialOfService, ElevationOfPrivilege
+        description: "Provide a description for this threat"
+        mitigation: "Provide remediation for this threat or a reason if status is N/A"
