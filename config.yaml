@@ -2,3 +2,10 @@ threat_dragon_version: "2.2.0"
 title: "My threat modeling"
 owner: "me"
 description: "This is my description"
+diagrams:
+  - name: Child_Data_Flow
+    parent: Diagram1
+    nodes:
+      - MyProcess
+      - RabbitMq
+      - Prometheus

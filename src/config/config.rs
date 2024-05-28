@@ -6,6 +6,14 @@ pub struct Config {
     pub title: String,
     pub owner: String,
     pub description: String,
+    pub diagrams: Vec<Diagrams>
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Diagrams {
+    pub name: String,
+    pub parent: String,
+    pub nodes: Vec<String>
 }
 
 #[derive(Debug)]

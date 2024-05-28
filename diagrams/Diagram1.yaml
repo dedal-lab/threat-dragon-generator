@@ -24,54 +24,54 @@ nodes:
     outOfScope: true
     trustBoundary: "Enablers"
     threats: []
-  # - name: Kafka
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers"
-  #   threats: []
-  # - name: Minio
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers"
-  #   threats: []
-  # - name: Postgres
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers"
-  #   threats: []
-  # - name: influxdb
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers"
-  #   threats: []
+  - name: Kafka
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers"
+    threats: []
+  - name: Minio
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers"
+    threats: []
+  - name: Postgres
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers"
+    threats: []
+  - name: influxdb
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers"
+    threats: []
   - name: RabbitMq2
     type: process
     description: "Message broker"
     outOfScope: true
     trustBoundary: "Enablers2"
     threats: []
-  # - name: Prometheus2
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers2"
-  #   threats: []
-  # - name: Kafka2
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers2"
-  #   threats: []
-  # - name: Minio2
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers2"
-  #   threats: []
+  - name: Prometheus2
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers2"
+    threats: []
+  - name: Kafka2
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers2"
+    threats: []
+  - name: Minio2
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers2"
+    threats: []
   - name: PROC_RABBIT
     type: flow
     source: MyProcess      # Use field "name" defined inside the node source

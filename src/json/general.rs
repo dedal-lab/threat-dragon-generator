@@ -65,12 +65,29 @@ struct Detail {
 
 impl MappingFromVecInputDiagram for Detail {
     fn from_input_diagram(input_diagram: &Vec<InputDiagram>, config: &Config) -> Self {
+        let mut json_diagram: Vec<Diagram> = input_diagram
+            .iter()
+            .map(|input_diagram| Diagram::from_input_diagram(&input_diagram, &config, None))
+            .collect();
+
+        config.diagrams.iter().for_each(|config_diagram| {
+            let diagram_parent = input_diagram
+                .iter()
+                .filter(|input_diagram| input_diagram.title == config_diagram.parent)
+                .last();
+            // Add childs diagrams
+            if let Some(parent) = diagram_parent {
+                json_diagram.push(Diagram::from_input_diagram(
+                    &parent,
+                    &config,
+                    Some(config_diagram.name.clone()),
+                ))
+            }
+        });
+
         Self {
             contributors: Vec::new(),
-            diagrams: input_diagram
-                .iter()
-                .map(|input_diagram| Diagram::from_input_diagram(&input_diagram, &config))
-                .collect(),
+            diagrams: json_diagram,
             diagram_top: 0,
             reviewer: "".to_string(),
             threat_top: 0,

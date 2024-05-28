@@ -26,18 +26,52 @@ pub struct Diagram {
 }
 
 impl MappingFromInputDiagram for Diagram {
-    fn from_input_diagram(input_diagram: &InputDiagram, config: &Config) -> Self {
+    fn from_input_diagram(
+        input_diagram: &InputDiagram,
+        config: &Config,
+        sub_diagram: Option<String>,
+    ) -> Self {
         let mut cells = input_diagram
             .nodes
             .iter()
+            .filter(|input_node| {
+                if let Some(sub_diagram) = sub_diagram.clone() {
+                    let config_diagram = config
+                        .diagrams
+                        .iter()
+                        .filter(|config_diagram| config_diagram.name == sub_diagram)
+                        .last();
+                    if let Some(config_diagram) = config_diagram {
+                        return config_diagram.nodes.iter().any(|config_node| {
+                            if *config_node == input_node.name.clone() {
+                                return true;
+                            } else if let Some(source) = &input_node.source {
+                                return *config_node == *source;
+                            } else if let Some(dest) = &input_node.destination {
+                                return *config_node == *dest;
+                            } else {
+                                return false;
+                            }
+                        });
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            })
             .map(|input_node| Cell::from_input_diagram(&input_node, &config))
             .collect();
         Self::update_source_and_destination(&mut cells, &input_diagram);
         Self::update_cells_position(&mut cells, &input_diagram);
         Self::add_trust_boundaries(&mut cells, input_diagram);
+        let title = match sub_diagram {
+            Some(sub_diagram_title) => sub_diagram_title.clone(),
+            None => input_diagram.title.clone(),
+        };
         Self {
             id: 0,
-            title: input_diagram.title.clone(),
+            title,
             diagram_type: "STRIDE".to_string(),
             placeholder: input_diagram.description.clone(),
             thumbnail: "./public/content/images/thumbnail.stride.jpg".to_string(),

@@ -37,7 +37,7 @@
               }
             },
             "shape": "process",
-            "id": "7d5573a2-1783-43a6-9bd4-cc219e8c2026",
+            "id": "ab523d88-cd7e-4898-92da-02f6a1badd36",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -48,7 +48,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "a145698f-2308-4cb8-81bb-2c18a6f61c28",
+                  "id": "5210afd6-8110-4f36-943c-e425161f018c",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -83,7 +83,7 @@
               }
             },
             "shape": "process",
-            "id": "dc50dd7b-49e2-4cd4-b170-2f16cbbcfc3c",
+            "id": "7811c9f1-6c96-4441-a2d4-4ec85069ceb5",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -115,7 +115,7 @@
               }
             },
             "shape": "process",
-            "id": "879411c9-76ba-4de8-88bf-20639b853a74",
+            "id": "7a98ea1e-591e-4ce2-bdb9-4a0511b52f2f",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -147,7 +147,7 @@
               }
             },
             "shape": "process",
-            "id": "b34d5570-035c-4bf1-9b2b-0876c4b48eb1",
+            "id": "f85b508e-93d6-4ae4-a4b0-fe37964a4b0e",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -174,7 +174,7 @@
               }
             },
             "shape": "flow",
-            "id": "9f9755db-c407-4064-9f97-8af1f2fb94f3",
+            "id": "38311571-7000-43b0-a1e3-aada7e68c53f",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -184,7 +184,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "108f1fb0-379d-44d6-b09f-6108ba846ce8",
+                  "id": "2a97a983-c1cf-4512-be57-fb69cbd90171",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -199,10 +199,10 @@
               ]
             },
             "source": {
-              "cell": "7d5573a2-1783-43a6-9bd4-cc219e8c2026"
+              "cell": "ab523d88-cd7e-4898-92da-02f6a1badd36"
             },
             "target": {
-              "cell": "dc50dd7b-49e2-4cd4-b170-2f16cbbcfc3c"
+              "cell": "7811c9f1-6c96-4441-a2d4-4ec85069ceb5"
             },
             "labels": [
               "PROC_RABBIT"
@@ -223,7 +223,7 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "f1ab03af-b577-4cf1-b077-bc3adb80e6f3",
+            "id": "98ee381b-fd35-49ba-82cd-97ffe5104492",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",
@@ -248,7 +248,7 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "7251e0a7-425e-44b6-9d59-7d2e561f8cd0",
+            "id": "8b876aec-1acc-4863-aaa2-74368ada9f59",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",
@@ -288,7 +288,7 @@
               }
             },
             "shape": "process",
-            "id": "7c114534-f439-486d-8022-3a71043335a7",
+            "id": "97981b7d-0977-4bd2-8841-552a88f3790b",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -299,7 +299,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "17b76f9e-3c8c-48b7-aad6-14ed11ddddb0",
+                  "id": "866cafcc-7216-4fc7-b2da-1c97abc3e2c4",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -316,8 +316,8 @@
           },
           {
             "position": {
-              "x": 830.0,
-              "y": 500.0
+              "x": 1010.0,
+              "y": 603.9230484541326
             },
             "size": {
               "width": 140,
@@ -334,12 +334,140 @@
               }
             },
             "shape": "process",
-            "id": "15cadcc9-983f-453b-9904-62d53aee8195",
+            "id": "f0b33983-6b22-4bdb-b770-d535b0a4fe9f",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
               "name": "RabbitMq",
               "description": "Message broker",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 890.0,
+              "y": 603.9230484541326
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Prometheus"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "60bb9616-3860-4552-9e49-b5b2069f33f2",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Prometheus",
+              "description": "Metrics server",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 830.0,
+              "y": 500.0
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Kafka"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "6a119482-4595-467c-98f1-bdcabe722da2",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Kafka",
+              "description": "Metrics server",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 890.0,
+              "y": 396.07695154586736
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Minio"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "ea1678f4-c2fe-4460-8fed-4b28890ba7eb",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Minio",
+              "description": "Metrics server",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1010.0,
+              "y": 396.07695154586736
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Postgres"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "0e5ec6bf-93c5-4d2b-bd81-7ee624e34ca7",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Postgres",
+              "description": "Metrics server",
               "outOfScope": true,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -357,7 +485,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Prometheus"
+                "text": "influxdb"
               },
               "body": {
                 "stroke": "#333333",
@@ -366,11 +494,107 @@
               }
             },
             "shape": "process",
-            "id": "415433f7-c2d5-43f0-9694-c88174fbfceb",
+            "id": "9b6edac0-411d-4b2a-a2a7-2b0b713f1e10",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
-              "name": "Prometheus",
+              "name": "influxdb",
+              "description": "Metrics server",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 275.0000000000001,
+              "y": 1009.7114317029974
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "RabbitMq2"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "0fb2f5a0-d347-4d8d-97fa-bd2c7f644d88",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "RabbitMq2",
+              "description": "Message broker",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 155.0000000000001,
+              "y": 889.7114317029974
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Prometheus2"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "4550970f-f8d1-4dcb-ad2b-2321d2c68275",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Prometheus2",
+              "description": "Metrics server",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 275.0000000000001,
+              "y": 769.7114317029974
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Kafka2"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "2ddb6988-66e0-4bb1-b947-2d6036a2660f",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Kafka2",
               "description": "Metrics server",
               "outOfScope": true,
               "reasonOutOfScope": "",
@@ -389,7 +613,7 @@
             },
             "attrs": {
               "text": {
-                "text": "RabbitMq2"
+                "text": "Minio2"
               },
               "body": {
                 "stroke": "#333333",
@@ -398,12 +622,12 @@
               }
             },
             "shape": "process",
-            "id": "2b347419-2b49-4270-8f60-2495c7f96ad1",
+            "id": "67c65130-c7f9-4ca2-b53b-31f08f7b4a44",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
-              "name": "RabbitMq2",
-              "description": "Message broker",
+              "name": "Minio2",
+              "description": "Metrics server",
               "outOfScope": true,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -425,7 +649,7 @@
               }
             },
             "shape": "flow",
-            "id": "317b92a8-0c47-4338-8476-3e889af49237",
+            "id": "7d2da4ae-bdf7-4a37-ad8c-59f65c2bfee4",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -435,7 +659,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "40c2a0ce-f2af-4f4c-a821-0b91548f3719",
+                  "id": "90e6d004-44de-4c21-8a60-fcca72b245f6",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -450,10 +674,10 @@
               ]
             },
             "source": {
-              "cell": "7c114534-f439-486d-8022-3a71043335a7"
+              "cell": "97981b7d-0977-4bd2-8841-552a88f3790b"
             },
             "target": {
-              "cell": "15cadcc9-983f-453b-9904-62d53aee8195"
+              "cell": "f0b33983-6b22-4bdb-b770-d535b0a4fe9f"
             },
             "labels": [
               "PROC_RABBIT"
@@ -462,11 +686,11 @@
           {
             "position": {
               "x": 790.0,
-              "y": 459.99999999999994
+              "y": 356.07695154586736
             },
             "size": {
               "width": 460,
-              "height": 220
+              "height": 427
             },
             "attrs": {
               "headerText": {
@@ -474,7 +698,7 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "cfae2ade-2411-45f3-b3c0-191450e1d480",
+            "id": "66f0698e-f1a6-465a-b5b2-7d84d9b1af48",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",
@@ -486,12 +710,12 @@
           },
           {
             "position": {
-              "x": 355.0000000000001,
-              "y": 849.7114317029974
+              "x": 115.00000000000011,
+              "y": 729.7114317029974
             },
             "size": {
-              "width": 220,
-              "height": 220
+              "width": 460,
+              "height": 460
             },
             "attrs": {
               "headerText": {
@@ -499,11 +723,205 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "1ee7e27f-7ed2-460c-bc0c-cbd3ed69b225",
+            "id": "7f4dcb43-dd0a-4366-a002-840319c83745",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Enablers2",
+              "description": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          }
+        ]
+      },
+      {
+        "id": 0,
+        "title": "Child_Data_Flow",
+        "diagramType": "STRIDE",
+        "placeholder": "Diagram1 STRIDE modeling",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 380.0,
+              "y": 520.0
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "MyProcess"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "shape": "process",
+            "id": "f01e5d15-f7d3-42d0-b947-68a61832b143",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "MyProcess",
+              "description": "Ecoute",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "704e2a6c-07d7-4d61-8215-390cbf3584f0",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1010.0,
+              "y": 603.9230484541326
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "RabbitMq"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "7bd9a69d-0132-434d-b981-42b7bcfdda42",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "RabbitMq",
+              "description": "Message broker",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 890.0,
+              "y": 603.9230484541326
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Prometheus"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 3.0,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "shape": "process",
+            "id": "4ba7dcce-0a63-4737-a8cb-a8674cbc82c1",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Prometheus",
+              "description": "Metrics server",
+              "outOfScope": true,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 1.5,
+                "sourceMarker": {
+                  "name": ""
+                },
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "shape": "flow",
+            "id": "32495bfb-054f-42dd-88c9-987302166fa3",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Flow",
+              "name": "PROC_RABBIT",
+              "description": "Publish message",
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "17877b57-f374-429d-bc0a-c4295bc73953",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                }
+              ]
+            },
+            "source": {
+              "cell": "f01e5d15-f7d3-42d0-b947-68a61832b143"
+            },
+            "target": {
+              "cell": "7bd9a69d-0132-434d-b981-42b7bcfdda42"
+            },
+            "labels": [
+              "PROC_RABBIT"
+            ]
+          },
+          {
+            "position": {
+              "x": 850.0,
+              "y": 563.9230484541326
+            },
+            "size": {
+              "width": 340,
+              "height": 220
+            },
+            "attrs": {
+              "headerText": {
+                "text": "Enablers"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "id": "ffe10139-713e-4721-9aba-023f2aceef99",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Enablers",
               "description": "",
               "hasOpenThreats": false,
               "threats": []

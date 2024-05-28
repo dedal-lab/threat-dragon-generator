@@ -7,7 +7,11 @@ use crate::{
 };
 
 pub trait MappingFromInputDiagram {
-    fn from_input_diagram(input_diagram: &InputDiagram, config: &Config) -> Self;
+    fn from_input_diagram(
+        input_diagram: &InputDiagram,
+        config: &Config,
+        sub_diagram: Option<String>,
+    ) -> Self;
 }
 
 pub trait MappingFromVecInputDiagram {
