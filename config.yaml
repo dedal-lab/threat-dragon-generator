@@ -3,8 +3,8 @@ title: "My threat modeling"
 owner: "me"
 description: "This is my description"
 diagrams:
-  - name: Child_Data_Flow
-    parent: Diagram1
+  - name: A2_Child_Data_Flow
+    parent: A1_Diagram1
     nodes:
       - MyProcess
       - RabbitMq
