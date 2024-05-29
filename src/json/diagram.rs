@@ -1,7 +1,7 @@
 use std::{collections::HashMap, f64::consts::PI};
 
 use ordered_float::OrderedFloat;
-use rand::Rng;
+
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -34,32 +34,7 @@ impl MappingFromInputDiagram for Diagram {
         let mut cells = input_diagram
             .nodes
             .iter()
-            .filter(|input_node| {
-                if let Some(sub_diagram) = sub_diagram.clone() {
-                    let config_diagram = config
-                        .diagrams
-                        .iter()
-                        .filter(|config_diagram| config_diagram.name == sub_diagram)
-                        .last();
-                    if let Some(config_diagram) = config_diagram {
-                        return config_diagram.nodes.iter().any(|config_node| {
-                            if *config_node == input_node.name.clone() {
-                                return true;
-                            } else if let Some(source) = &input_node.source {
-                                return *config_node == *source;
-                            } else if let Some(dest) = &input_node.destination {
-                                return *config_node == *dest;
-                            } else {
-                                return false;
-                            }
-                        });
-                    } else {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            })
+            .filter(|input_node| display_child_diagram_node(&sub_diagram, config, input_node))
             .map(|input_node| Cell::from_input_diagram(&input_node, &config))
             .collect();
         Self::update_source_and_destination(&mut cells, &input_diagram);
@@ -78,6 +53,66 @@ impl MappingFromInputDiagram for Diagram {
             version: config.threat_dragon_version.clone(),
             cells,
         }
+    }
+}
+
+fn display_child_diagram_node(
+    sub_diagram: &Option<String>,
+    config: &Config,
+    input_node: &&Node,
+) -> bool {
+    if let Some(sub_diagram) = sub_diagram.clone() {
+        let config_diagram = config
+            .diagrams
+            .iter()
+            .filter(|config_diagram| config_diagram.name == sub_diagram)
+            .last();
+        return is_input_node_in_child_diagram(config_diagram, input_node);
+    } else {
+        return true;
+    }
+}
+
+fn is_input_node_in_child_diagram(
+    config_diagram: Option<&crate::config::config::Diagrams>,
+    input_node: &&Node,
+) -> bool {
+    if let Some(config_diagram) = config_diagram {
+        if let Some(input_source) = &input_node.source {
+            if let Some(input_dest) = &input_node.destination {
+                return are_source_and_destination_in_child_view(
+                    config_diagram,
+                    input_source,
+                    input_dest,
+                );
+            } else {
+                return false;
+            }
+        } else {
+            return config_diagram
+                .nodes
+                .iter()
+                .any(|config_node| *config_node == input_node.name.clone());
+        }
+    } else {
+        return true;
+    }
+}
+
+fn are_source_and_destination_in_child_view(
+    config_diagram: &crate::config::config::Diagrams,
+    input_source: &String,
+    input_dest: &String,
+) -> bool {
+    let source_and_dest_in_config: Vec<&String> = config_diagram
+        .nodes
+        .iter()
+        .filter(|config_node| *config_node == input_source || *config_node == input_dest)
+        .collect();
+    if source_and_dest_in_config.len() == 2 {
+        return true;
+    } else {
+        return false;
     }
 }
 

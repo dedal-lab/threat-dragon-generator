@@ -84,3 +84,27 @@ nodes:
         type: "DenialOfService"     # Spoofing, Tampering, Repudiation, InformationDisclosure, DenialOfService, ElevationOfPrivilege
         description: "Provide a description for this threat"
         mitigation: "Provide remediation for this threat or a reason if status is N/A"
+  - name: PROC_KAFKA
+    type: flow
+    source: MyProcess      # Use field "name" defined inside the node source
+    destination: Kafka  # Use field "name" defined inside the node destination
+    description: "Publish message"
+    threats:
+      - title: "New STRIDE threat"
+        status: "Open"       # Open, NotApplicable, Mitigated
+        severity: "Medium"   # Low, Medium, High
+        type: "DenialOfService"     # Spoofing, Tampering, Repudiation, InformationDisclosure, DenialOfService, ElevationOfPrivilege
+        description: "Provide a description for this threat"
+        mitigation: "Provide remediation for this threat or a reason if status is N/A"
+  - name: MINIO_PROC
+    type: flow
+    source: Minio      # Use field "name" defined inside the node source
+    destination: MyProcess  # Use field "name" defined inside the node destination
+    description: "Publish message"
+    threats:
+      - title: "New STRIDE threat"
+        status: "Open"       # Open, NotApplicable, Mitigated
+        severity: "Medium"   # Low, Medium, High
+        type: "DenialOfService"     # Spoofing, Tampering, Repudiation, InformationDisclosure, DenialOfService, ElevationOfPrivilege
+        description: "Provide a description for this threat"
+        mitigation: "Provide remediation for this threat or a reason if status is N/A"

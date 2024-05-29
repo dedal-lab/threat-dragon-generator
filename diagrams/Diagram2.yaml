@@ -24,12 +24,12 @@ nodes:
     outOfScope: true
     trustBoundary: "Enablers"
     threats: []
-  # - name: Kafka
-  #   type: process
-  #   description: "Metrics server"
-  #   outOfScope: true
-  #   trustBoundary: "Enablers"
-  #   threats: []
+  - name: Kafka
+    type: process
+    description: "Metrics server"
+    outOfScope: true
+    trustBoundary: "Enablers"
+    threats: []
   # - name: Minio
   #   type: process
   #   description: "Metrics server"
@@ -72,10 +72,10 @@ nodes:
   #   outOfScope: true
   #   trustBoundary: "Enablers2"
   #   threats: []
-  - name: PROC_RABBIT
+  - name: PROC_RABBIT_2
     type: flow
     source: MyProcess      # Use field "name" defined inside the node source
-    destination: RabbitMq  # Use field "name" defined inside the node destination
+    destination: RabbitMq2  # Use field "name" defined inside the node destination
     description: "Publish message"
     threats:
       - title: "New STRIDE threat"
