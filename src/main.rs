@@ -4,6 +4,7 @@ use std::{
     io::{BufReader, BufWriter},
 };
 
+use input::threat::Threat;
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -19,14 +20,19 @@ mod process;
 
 fn main() {
     let config_path = env::var("CONFIG_PATH");
+    let threat_path = env::var("THREAT_PATH");
     let diagram_path = env::var("DIAGRAM_PATH");
     let output_path = env::var("OUTPUT_PATH");
 
     let file = File::open(config_path.unwrap()).unwrap();
     let reader = BufReader::new(file);
     let config: Config = serde_yaml::from_reader(reader).unwrap();
-
     println!("{:?}", config);
+
+    let file = File::open(threat_path.unwrap()).unwrap();
+    let reader = BufReader::new(file);
+    let threat_list: Vec<Threat> = serde_yaml::from_reader(reader).unwrap();
+    println!("{:?}", threat_list);
 
     let entries = fs::read_dir(&diagram_path.unwrap())
         .unwrap()
@@ -43,7 +49,8 @@ fn main() {
     }
 
     let json_model_output = output_path.unwrap();
-    let new_threat_modeling = ThreatModeling::new(&threat_model_diagram_list, &config);
+    let new_threat_modeling =
+        ThreatModeling::new(&threat_model_diagram_list, &config, &threat_list);
     let output_file = File::create(json_model_output).unwrap();
     let writer = BufWriter::new(output_file);
     serde_json::to_writer_pretty(writer, &new_threat_modeling).unwrap();

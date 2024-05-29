@@ -37,7 +37,7 @@
               }
             },
             "shape": "process",
-            "id": "3bd82a43-2a79-4b98-9a7d-91e5ee61fdb6",
+            "id": "affd6802-9f57-44d3-ac57-18d913cd0222",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -48,11 +48,24 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "4d16d868-9b8b-4489-887b-4aff2cbd0685",
+                  "id": "50077dd1-d937-4721-826b-b68b40851a54",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Information disclosure",
+                  "type": "Denial of service",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "dbd1ced5-dd14-4d60-9d00-882e6cbfe91a",
+                  "title": "New STRIDE threat 2",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
                   "description": "Provide a description for this threat",
                   "mitigation": "Provide remediation for this threat or a reason if status is N/A",
                   "modelType": "STRIDE",
@@ -83,7 +96,7 @@
               }
             },
             "shape": "process",
-            "id": "14e8b83c-921a-4917-955f-36903672821f",
+            "id": "58c3cf96-a515-405c-8666-255f61d2aa9a",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -115,7 +128,7 @@
               }
             },
             "shape": "process",
-            "id": "a53b818a-993f-4eba-8ebc-ee1cb89fe956",
+            "id": "a372224a-aab3-4f81-a084-d93c853e3acd",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -147,7 +160,7 @@
               }
             },
             "shape": "process",
-            "id": "c653c4c0-6157-4608-8724-a4e362f904e6",
+            "id": "e4376c70-44d9-4b47-b0b1-b92bcc6ce653",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -179,7 +192,7 @@
               }
             },
             "shape": "process",
-            "id": "a4569a39-ec7f-4d4b-8fdb-97f0fcf66dcf",
+            "id": "986639bf-c452-4a81-bc7c-01facc4b37f5",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -211,7 +224,7 @@
               }
             },
             "shape": "process",
-            "id": "c7b62336-a8ba-4ccb-ab5d-25f323273051",
+            "id": "f1939893-003c-45b7-a625-9b873a43957c",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -243,7 +256,7 @@
               }
             },
             "shape": "process",
-            "id": "72efe449-1e60-4de7-81ab-0a83bd61e4f7",
+            "id": "b0d5c394-7ab7-4e64-8417-089f0573e68d",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -275,7 +288,7 @@
               }
             },
             "shape": "process",
-            "id": "653717e5-f5e9-464f-93f1-d85da07c4596",
+            "id": "a6add3ff-9128-4a26-9dc5-d100cd0aeca7",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -307,7 +320,7 @@
               }
             },
             "shape": "process",
-            "id": "75267866-1745-461e-b4d9-eef7d9aea315",
+            "id": "915bd49a-47d4-4daa-8b76-2ed331b01083",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -339,7 +352,7 @@
               }
             },
             "shape": "process",
-            "id": "a78d7590-8503-4003-84d2-a1214278886a",
+            "id": "5748b9dc-4214-429c-90de-7af9155030fb",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -371,7 +384,7 @@
               }
             },
             "shape": "process",
-            "id": "0017feff-11f6-4e77-824a-630ccfec79ce",
+            "id": "7c8b9364-3260-450f-9513-283ad7db91a5",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -398,7 +411,7 @@
               }
             },
             "shape": "flow",
-            "id": "2221c465-31e7-4101-94f5-4b099a6d7dab",
+            "id": "c394d544-5031-48f1-9971-65cdd901989f",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -408,7 +421,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "3b2569e5-6de6-46df-acc4-2624cec05fb8",
+                  "id": "bff839d1-e9e9-4a95-9912-db0edd44769a",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -423,10 +436,10 @@
               ]
             },
             "source": {
-              "cell": "3bd82a43-2a79-4b98-9a7d-91e5ee61fdb6"
+              "cell": "affd6802-9f57-44d3-ac57-18d913cd0222"
             },
             "target": {
-              "cell": "14e8b83c-921a-4917-955f-36903672821f"
+              "cell": "58c3cf96-a515-405c-8666-255f61d2aa9a"
             },
             "labels": [
               "PROC_RABBIT"
@@ -447,7 +460,7 @@
               }
             },
             "shape": "flow",
-            "id": "0c2fb2d7-ff43-479b-9531-e878c3c0a517",
+            "id": "43569ae5-2852-4279-ab71-f3977bde56bf",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -457,7 +470,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "5617bef4-73c7-4d0e-b8c0-8fbf8e5426f4",
+                  "id": "6827e0d9-bf15-4d2f-be6f-49a31ae338a7",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -472,10 +485,10 @@
               ]
             },
             "source": {
-              "cell": "3bd82a43-2a79-4b98-9a7d-91e5ee61fdb6"
+              "cell": "affd6802-9f57-44d3-ac57-18d913cd0222"
             },
             "target": {
-              "cell": "c653c4c0-6157-4608-8724-a4e362f904e6"
+              "cell": "e4376c70-44d9-4b47-b0b1-b92bcc6ce653"
             },
             "labels": [
               "PROC_KAFKA"
@@ -496,7 +509,7 @@
               }
             },
             "shape": "flow",
-            "id": "163e38eb-7887-4fd9-8426-a2bda93f1dd5",
+            "id": "06da34c6-b473-4674-9a33-2bfed6639bcb",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -506,7 +519,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "468f6337-00b7-4cba-abd2-1a45a76bb5d9",
+                  "id": "1d1a6312-5cc4-4de0-9747-6be6a32836b6",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -521,39 +534,14 @@
               ]
             },
             "source": {
-              "cell": "a4569a39-ec7f-4d4b-8fdb-97f0fcf66dcf"
+              "cell": "986639bf-c452-4a81-bc7c-01facc4b37f5"
             },
             "target": {
-              "cell": "3bd82a43-2a79-4b98-9a7d-91e5ee61fdb6"
+              "cell": "affd6802-9f57-44d3-ac57-18d913cd0222"
             },
             "labels": [
               "MINIO_PROC"
             ]
-          },
-          {
-            "position": {
-              "x": 115.00000000000011,
-              "y": 729.7114317029974
-            },
-            "size": {
-              "width": 460,
-              "height": 460
-            },
-            "attrs": {
-              "headerText": {
-                "text": "Enablers2"
-              }
-            },
-            "shape": "trust-boundary-box",
-            "id": "99b708ac-d174-44e0-a0e7-6ca7be319906",
-            "zIndex": 0,
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "Enablers2",
-              "description": "",
-              "hasOpenThreats": false,
-              "threats": []
-            }
           },
           {
             "position": {
@@ -570,11 +558,36 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "ff08b9d0-b19f-4f76-aab3-5a7af2caf957",
+            "id": "71e2d9d5-da44-486c-8836-17cf620a6570",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Enablers",
+              "description": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 115.00000000000011,
+              "y": 729.7114317029974
+            },
+            "size": {
+              "width": 460,
+              "height": 460
+            },
+            "attrs": {
+              "headerText": {
+                "text": "Enablers2"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "id": "0a0102f2-612c-4d01-b79d-d28b17dcc84b",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Enablers2",
               "description": "",
               "hasOpenThreats": false,
               "threats": []
@@ -610,7 +623,7 @@
               }
             },
             "shape": "process",
-            "id": "e0c1a470-86d4-4ec8-a656-9d55ddff3ce3",
+            "id": "d812d7b4-0171-43d1-a8f3-f798c9b1dd3b",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -621,11 +634,24 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "421948da-f772-4594-92e5-02dc71e8b51b",
+                  "id": "7ed387f8-6f03-4e52-8de0-067806136414",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Information disclosure",
+                  "type": "Denial of service",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "bc1d5458-510b-46ce-af40-e841b85fc07c",
+                  "title": "New STRIDE threat 2",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
                   "description": "Provide a description for this threat",
                   "mitigation": "Provide remediation for this threat or a reason if status is N/A",
                   "modelType": "STRIDE",
@@ -656,7 +682,7 @@
               }
             },
             "shape": "process",
-            "id": "1446b277-af4c-4c87-8161-01b940604a19",
+            "id": "ffa35d73-2e9d-4493-9f32-45469a2605e8",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -688,7 +714,7 @@
               }
             },
             "shape": "process",
-            "id": "29a61107-596b-4955-9d95-0083655e5aee",
+            "id": "64080f8e-283d-4e61-80d7-f310553245bf",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -720,7 +746,7 @@
               }
             },
             "shape": "process",
-            "id": "1ea67d4d-4116-4051-b6ee-8dd5a90ef274",
+            "id": "f33e3fe9-1d01-46b7-899e-1ce124358d61",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -752,7 +778,7 @@
               }
             },
             "shape": "process",
-            "id": "67f2dae3-8fbe-45e7-964a-74c42be8380a",
+            "id": "4d1404bf-e24a-4bd4-a678-db9eb32b2fb3",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -779,7 +805,7 @@
               }
             },
             "shape": "flow",
-            "id": "64ad8621-7285-46f2-9ebb-e3c85112597d",
+            "id": "032963ef-ad00-4cac-b553-b84f8791a04e",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -789,7 +815,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "cd6629d5-509e-4e9a-9197-d17dda63aaa9",
+                  "id": "cd806eae-f040-4037-8e7d-c0ef33f4f3dd",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -804,10 +830,10 @@
               ]
             },
             "source": {
-              "cell": "e0c1a470-86d4-4ec8-a656-9d55ddff3ce3"
+              "cell": "d812d7b4-0171-43d1-a8f3-f798c9b1dd3b"
             },
             "target": {
-              "cell": "1446b277-af4c-4c87-8161-01b940604a19"
+              "cell": "ffa35d73-2e9d-4493-9f32-45469a2605e8"
             },
             "labels": [
               "PROC_RABBIT"
@@ -828,7 +854,7 @@
               }
             },
             "shape": "flow",
-            "id": "666b0cd4-14e7-4502-8fa0-8d4b105e7b6f",
+            "id": "d6d8c6ce-72c0-4604-bd6c-b2e2b3fd6339",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -838,7 +864,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "cb811053-efcf-4214-9fef-2920b53978ea",
+                  "id": "628bf791-fbf1-4424-a33b-9e2c49ecc1b5",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -853,10 +879,10 @@
               ]
             },
             "source": {
-              "cell": "e0c1a470-86d4-4ec8-a656-9d55ddff3ce3"
+              "cell": "d812d7b4-0171-43d1-a8f3-f798c9b1dd3b"
             },
             "target": {
-              "cell": "1ea67d4d-4116-4051-b6ee-8dd5a90ef274"
+              "cell": "f33e3fe9-1d01-46b7-899e-1ce124358d61"
             },
             "labels": [
               "PROC_KAFKA"
@@ -877,7 +903,7 @@
               }
             },
             "shape": "flow",
-            "id": "93e5113b-4fee-4502-bd24-05c10fcf6d66",
+            "id": "42a6a3ec-168e-4739-bdf4-d8e945c0f6b1",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -887,7 +913,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "32eedb85-b85a-43c9-9229-9f1b06581366",
+                  "id": "34b99e10-5674-4b27-99a0-e77361a3a290",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -902,10 +928,10 @@
               ]
             },
             "source": {
-              "cell": "67f2dae3-8fbe-45e7-964a-74c42be8380a"
+              "cell": "4d1404bf-e24a-4bd4-a678-db9eb32b2fb3"
             },
             "target": {
-              "cell": "e0c1a470-86d4-4ec8-a656-9d55ddff3ce3"
+              "cell": "d812d7b4-0171-43d1-a8f3-f798c9b1dd3b"
             },
             "labels": [
               "MINIO_PROC"
@@ -926,7 +952,7 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "d2f7e676-f84e-48d2-b2b8-6d78709439f0",
+            "id": "35a40026-dd81-4809-a958-76147ead9687",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",
@@ -966,7 +992,7 @@
               }
             },
             "shape": "process",
-            "id": "2c611841-8e17-4d8f-a9e4-f34ae6e8a342",
+            "id": "942e61e5-1299-46c3-bdb3-07a85d9c2eef",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -977,11 +1003,11 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "c4e9dc7e-5da8-4b18-9618-83c19c8beb8b",
+                  "id": "c33c005b-1f69-4bd9-b4f6-c0487e6e7842",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Information disclosure",
+                  "type": "Denial of service",
                   "description": "Provide a description for this threat",
                   "mitigation": "Provide remediation for this threat or a reason if status is N/A",
                   "modelType": "STRIDE",
@@ -1012,7 +1038,7 @@
               }
             },
             "shape": "process",
-            "id": "81b80bf0-aa1b-4e9d-a2c2-7fa0b863f21f",
+            "id": "b4ccc17d-3330-4474-ab96-65f2cf43daec",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -1044,7 +1070,7 @@
               }
             },
             "shape": "process",
-            "id": "b5fccc75-5c77-40d2-a156-05f199c140b1",
+            "id": "1ee6c6e2-f770-4d05-a2e2-5d10381af419",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -1076,7 +1102,7 @@
               }
             },
             "shape": "process",
-            "id": "92bb6b33-6196-40f6-af4d-04781a1a5523",
+            "id": "f7143ed8-e5c3-42ef-b852-6f57dd44c64c",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -1108,7 +1134,7 @@
               }
             },
             "shape": "process",
-            "id": "206560ae-00c8-4d22-b4bd-7b94c2035095",
+            "id": "4f4e8568-ed19-4acc-be37-9db294835534",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -1135,7 +1161,7 @@
               }
             },
             "shape": "flow",
-            "id": "b98b4181-a3b1-4c78-a580-a3045cf818e3",
+            "id": "373234a6-54f8-4d1d-a674-0f51fec249d3",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -1145,7 +1171,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "49da206e-8013-4071-a160-df350c68ad69",
+                  "id": "63545a64-abb0-4059-afb4-409caec9f1a6",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -1160,39 +1186,14 @@
               ]
             },
             "source": {
-              "cell": "2c611841-8e17-4d8f-a9e4-f34ae6e8a342"
+              "cell": "942e61e5-1299-46c3-bdb3-07a85d9c2eef"
             },
             "target": {
-              "cell": "206560ae-00c8-4d22-b4bd-7b94c2035095"
+              "cell": "4f4e8568-ed19-4acc-be37-9db294835534"
             },
             "labels": [
               "PROC_RABBIT_2"
             ]
-          },
-          {
-            "position": {
-              "x": 1030.0,
-              "y": 459.99999999999994
-            },
-            "size": {
-              "width": 220,
-              "height": 220
-            },
-            "attrs": {
-              "headerText": {
-                "text": "Enablers2"
-              }
-            },
-            "shape": "trust-boundary-box",
-            "id": "bd065074-55aa-4034-9a8e-b38f32f57558",
-            "zIndex": 0,
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "Enablers2",
-              "description": "",
-              "hasOpenThreats": false,
-              "threats": []
-            }
           },
           {
             "position": {
@@ -1209,11 +1210,36 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "59ec92ab-64fc-4500-9e4d-31e07089f1dc",
+            "id": "f6561bed-67ae-4a29-93c5-cc2649f006ae",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Enablers",
+              "description": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1030.0,
+              "y": 459.99999999999994
+            },
+            "size": {
+              "width": 220,
+              "height": 220
+            },
+            "attrs": {
+              "headerText": {
+                "text": "Enablers2"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "id": "dd9f041e-9c71-41d6-8ebd-8f9a4d5aa0cc",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Enablers2",
               "description": "",
               "hasOpenThreats": false,
               "threats": []
@@ -1249,7 +1275,7 @@
               }
             },
             "shape": "process",
-            "id": "a1814ae1-9dd0-40a7-8653-5be0e9410506",
+            "id": "548c19bd-6014-4d7f-9b39-cdcba52d2232",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -1260,11 +1286,11 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "5a163836-12b1-42e7-9e3c-bded86b74329",
+                  "id": "a70a93c9-19de-47e7-9d3f-5c50b84a9eea",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Information disclosure",
+                  "type": "Denial of service",
                   "description": "Provide a description for this threat",
                   "mitigation": "Provide remediation for this threat or a reason if status is N/A",
                   "modelType": "STRIDE",
@@ -1295,7 +1321,7 @@
               }
             },
             "shape": "process",
-            "id": "64e98b3c-59e3-4aa7-9a3c-ed2048d1fdb8",
+            "id": "c6abb910-0e43-4573-a1e6-d6600c417574",
             "zIndex": 1,
             "data": {
               "type": "tm.Process",
@@ -1322,7 +1348,7 @@
               }
             },
             "shape": "flow",
-            "id": "2a84f5f9-3d6b-4012-98b8-c57a8101a87f",
+            "id": "c24d5a8c-d257-486c-a53a-cf265eb8124c",
             "zIndex": 1,
             "data": {
               "type": "tm.Flow",
@@ -1332,7 +1358,7 @@
               "hasOpenThreats": false,
               "threats": [
                 {
-                  "id": "01c709b7-cf8f-4cca-9217-f93b38fc5cad",
+                  "id": "5cf07296-dc58-4332-a395-6dbdcd13ff4a",
                   "title": "New STRIDE threat",
                   "status": "Open",
                   "severity": "Medium",
@@ -1347,10 +1373,10 @@
               ]
             },
             "source": {
-              "cell": "a1814ae1-9dd0-40a7-8653-5be0e9410506"
+              "cell": "548c19bd-6014-4d7f-9b39-cdcba52d2232"
             },
             "target": {
-              "cell": "64e98b3c-59e3-4aa7-9a3c-ed2048d1fdb8"
+              "cell": "c6abb910-0e43-4573-a1e6-d6600c417574"
             },
             "labels": [
               "PROC_RABBIT_2"
@@ -1371,7 +1397,7 @@
               }
             },
             "shape": "trust-boundary-box",
-            "id": "479e1e87-d4f1-4f11-bbad-935da548609c",
+            "id": "eca1ac49-82f9-4f03-91d4-f9956d170579",
             "zIndex": 0,
             "data": {
               "type": "tm.BoundaryBox",

@@ -7,8 +7,13 @@ use uuid::Uuid;
 
 use crate::{
     config::config::Config,
-    input::input_diagram::{InputDiagram, Node, TypeNode},
-    process::process::{MappingFromInputDiagram, MappingFromInputNode},
+    input::{
+        input_diagram::{InputDiagram, Node, TypeNode},
+        threat::Threat,
+    },
+    process::process::{
+        MappingFromInputDiagram, MappingFromInputNode, MappingFromInputNodeAndThreats,
+    },
 };
 
 use super::cell_data::CellData;
@@ -30,12 +35,13 @@ impl MappingFromInputDiagram for Diagram {
         input_diagram: &InputDiagram,
         config: &Config,
         sub_diagram: Option<String>,
+        threats: &Vec<Threat>,
     ) -> Self {
         let mut cells = input_diagram
             .nodes
             .iter()
             .filter(|input_node| display_child_diagram_node(&sub_diagram, config, input_node))
-            .map(|input_node| Cell::from_input_diagram(&input_node, &config))
+            .map(|input_node| Cell::from_input_diagram(&input_node, &config, threats))
             .collect();
         Self::update_source_and_destination(&mut cells, &input_diagram);
         Self::update_cells_position(&mut cells, &input_diagram);
@@ -423,8 +429,8 @@ struct Cell {
     labels: Option<Vec<String>>,
 }
 
-impl MappingFromInputNode for Cell {
-    fn from_input_diagram(input_node: &Node, config: &Config) -> Self {
+impl MappingFromInputNodeAndThreats for Cell {
+    fn from_input_diagram(input_node: &Node, config: &Config, threats: &Vec<Threat>) -> Self {
         Self {
             position: None,
             size: None,
@@ -434,7 +440,7 @@ impl MappingFromInputNode for Cell {
             id: Uuid::new_v4().to_string(),
             z_index: 1,
             connector: None,
-            data: CellData::from_input_diagram(&input_node, &config),
+            data: CellData::from_input_diagram(&input_node, &config, threats),
             source: None,
             target: None,
             labels: None,

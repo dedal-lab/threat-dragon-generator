@@ -4,7 +4,9 @@ use uuid::Uuid;
 use crate::{
     config::config::Config,
     input::{input_diagram::Node, threat},
-    process::process::{MappingFromInputNode, MappingFromInputThreat},
+    process::process::{
+        MappingFromInputNode, MappingFromInputNodeAndThreats, MappingFromInputThreat,
+    },
 };
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -38,8 +40,12 @@ pub struct CellData {
     pub threats: Vec<Threat>,
 }
 
-impl MappingFromInputNode for CellData {
-    fn from_input_diagram(input_node: &Node, config: &Config) -> Self {
+impl MappingFromInputNodeAndThreats for CellData {
+    fn from_input_diagram(
+        input_node: &Node,
+        config: &Config,
+        threats: &Vec<threat::Threat>,
+    ) -> Self {
         Self {
             type_field: format!(
                 "tm.{}",
@@ -68,7 +74,14 @@ impl MappingFromInputNode for CellData {
             threats: input_node
                 .threats
                 .iter()
-                .map(|input_threat| Threat::from_input_diagram(&input_threat, &config))
+                .map(|input_threat_name| {
+                    threats
+                        .iter()
+                        .filter(|threat| threat.title == *input_threat_name)
+                        .last()
+                })
+                .filter(|input_threat| input_threat.is_some())
+                .map(|input_threat| Threat::from_input_diagram(&input_threat.unwrap(), &config))
                 .collect(),
         }
     }

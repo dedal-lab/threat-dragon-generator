@@ -11,15 +11,24 @@ pub trait MappingFromInputDiagram {
         input_diagram: &InputDiagram,
         config: &Config,
         sub_diagram: Option<String>,
+        threats: &Vec<Threat>,
     ) -> Self;
 }
 
 pub trait MappingFromVecInputDiagram {
-    fn from_input_diagram(input_diagram: &Vec<InputDiagram>, config: &Config) -> Self;
+    fn from_input_diagram(
+        input_diagram: &Vec<InputDiagram>,
+        config: &Config,
+        threats: &Vec<Threat>,
+    ) -> Self;
 }
 
 pub trait MappingFromInputNode {
     fn from_input_diagram(input_node: &Node, config: &Config) -> Self;
+}
+
+pub trait MappingFromInputNodeAndThreats {
+    fn from_input_diagram(input_node: &Node, config: &Config, threats: &Vec<Threat>) -> Self;
 }
 
 pub trait MappingFromInputThreat {

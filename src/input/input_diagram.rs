@@ -27,7 +27,7 @@ pub struct Node {
     pub source: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub destination: Option<String>,
-    pub threats: Vec<Threat>,
+    pub threats: Vec<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]

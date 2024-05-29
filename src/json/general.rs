@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     config::config::{Config, ConfigError, ConfigYaml},
-    input::input_diagram::InputDiagram,
+    input::{input_diagram::InputDiagram, threat::Threat},
     process::process::{MappingFromInputDiagram, MappingFromVecInputDiagram},
 };
 
@@ -19,11 +19,11 @@ pub struct ThreatModeling {
 }
 
 impl ThreatModeling {
-    pub fn new(input_diagram: &Vec<InputDiagram>, config: &Config) -> Self {
+    pub fn new(input_diagram: &Vec<InputDiagram>, config: &Config, threats: &Vec<Threat>) -> Self {
         Self {
             version: config.threat_dragon_version.clone(),
             summary: Summary::new(config),
-            detail: Detail::from_input_diagram(&input_diagram, &config),
+            detail: Detail::from_input_diagram(&input_diagram, &config, threats),
         }
     }
 }
@@ -66,13 +66,17 @@ struct Detail {
 }
 
 impl MappingFromVecInputDiagram for Detail {
-    fn from_input_diagram(input_diagram: &Vec<InputDiagram>, config: &Config) -> Self {
+    fn from_input_diagram(
+        input_diagram: &Vec<InputDiagram>,
+        config: &Config,
+        threats: &Vec<Threat>,
+    ) -> Self {
         let mut json_diagram: BTreeMap<String, Diagram> = input_diagram
             .iter()
             .map(|input_diagram| {
                 (
                     input_diagram.title.clone(),
-                    Diagram::from_input_diagram(&input_diagram, &config, None),
+                    Diagram::from_input_diagram(&input_diagram, &config, None, threats),
                 )
             })
             .collect();
@@ -90,6 +94,7 @@ impl MappingFromVecInputDiagram for Detail {
                         &parent,
                         &config,
                         Some(config_diagram.name.clone()),
+                        threats,
                     ),
                 );
             }
