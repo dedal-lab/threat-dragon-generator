@@ -10,13 +10,13 @@ use serde::{Deserialize, Serialize};
 use crate::{
     config::config::{Config, ConfigYaml},
     input::input_diagram::InputDiagram,
-    json::general::ThreatModeling,
+    threat_dragon_modeling::general::ThreatModeling,
 };
 
 mod config;
 mod input;
-mod json;
 mod process;
+mod threat_dragon_modeling;
 
 fn main() {
     let config_path = env::var("CONFIG_PATH");
