@@ -21,13 +21,13 @@ use super::cell_data::CellData;
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Diagram {
-    id: u32,
-    title: String,
-    diagram_type: String,
-    placeholder: String,
-    thumbnail: String,
-    version: String,
-    cells: Vec<Cell>,
+    pub id: u32,
+    pub title: String,
+    pub diagram_type: String,
+    pub placeholder: String,
+    pub thumbnail: String,
+    pub version: String,
+    pub cells: Vec<Cell>,
 }
 
 impl MappingFromInputDiagram for Diagram {
@@ -406,27 +406,27 @@ impl Diagram {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
-struct Cell {
+pub struct Cell {
     #[serde(skip_serializing_if = "Option::is_none")]
-    position: Option<Position>,
+    pub position: Option<Position>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    size: Option<Size>,
+    pub size: Option<Size>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    attrs: Option<Attrs>,
+    pub attrs: Option<Attrs>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    visible: Option<bool>,
-    shape: String,
-    id: String,
-    z_index: u32,
+    pub visible: Option<bool>,
+    pub shape: String,
+    pub id: String,
+    pub z_index: u32,
     #[serde(skip_serializing_if = "Option::is_none")]
-    connector: Option<String>,
-    data: CellData,
+    pub connector: Option<String>,
+    pub data: CellData,
     #[serde(skip_serializing_if = "Option::is_none")]
-    source: Option<Endpoint>,
+    pub source: Option<Endpoint>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    target: Option<Endpoint>,
+    pub target: Option<Endpoint>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    labels: Option<Vec<String>>,
+    pub labels: Option<Vec<String>>,
 }
 
 impl MappingFromInputNodeAndThreats for Cell {

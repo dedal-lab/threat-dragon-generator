@@ -5,17 +5,18 @@ use std::{
 };
 
 use input::threat::Threat;
-use serde::{Deserialize, Serialize};
 
 use crate::{
-    config::config::{Config, ConfigYaml},
-    input::input_diagram::InputDiagram,
+    config::config::Config, input::input_diagram::InputDiagram,
     threat_dragon_modeling::general::ThreatModeling,
 };
+
+use reports::xls::xls_reports;
 
 mod config;
 mod input;
 mod process;
+mod reports;
 mod threat_dragon_modeling;
 
 fn main() {
@@ -54,4 +55,6 @@ fn main() {
     let output_file = File::create(json_model_output).unwrap();
     let writer = BufWriter::new(output_file);
     serde_json::to_writer_pretty(writer, &new_threat_modeling).unwrap();
+
+    xls_reports::create_reports(&threat_model_diagram_list.get(0).unwrap(), &config).unwrap();
 }

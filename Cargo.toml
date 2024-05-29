@@ -12,3 +12,4 @@ serde_yaml = "0.9"
 uuid = { version = "1.8", features = ["v4"] }
 rand = "0.8"
 ordered-float = "4.2"
+rust_xlsxwriter = "0.64.2"

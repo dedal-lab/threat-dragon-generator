@@ -1,7 +1,16 @@
-threat_dragon_version: "2.2.0"
+threatDragonVersion: "2.2.0"
 title: "My threat modeling"
 owner: "me"
 description: "This is my description"
+trustBoundaries:
+  - name: Enablers
+    description: "Enabler services provided"
+    limitOfAccess: "Operational"
+    levelOfAuthorization: "Application data"
+  - name: Enablers2
+    description: "Enabler services provided"
+    limitOfAccess: "Operational"
+    levelOfAuthorization: "Application data"
 diagrams:
   - name: A2_Child_Data_Flow
     parent: A1_Diagram1

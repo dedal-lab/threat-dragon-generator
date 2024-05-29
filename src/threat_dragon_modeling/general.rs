@@ -13,9 +13,9 @@ use super::diagram::Diagram;
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct ThreatModeling {
-    version: String,
-    summary: Summary,
-    detail: Detail,
+    pub version: String,
+    pub summary: Summary,
+    pub detail: Detail,
 }
 
 impl ThreatModeling {
@@ -31,10 +31,10 @@ impl ThreatModeling {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 struct Summary {
-    title: String,
-    owner: String,
-    description: String,
-    id: u32,
+    pub title: String,
+    pub owner: String,
+    pub description: String,
+    pub id: u32,
 }
 
 impl Summary {
@@ -57,12 +57,12 @@ impl ConfigYaml for ThreatModeling {
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
-struct Detail {
-    contributors: Vec<String>,
-    diagrams: Vec<Diagram>,
-    diagram_top: u32,
-    reviewer: String,
-    threat_top: u32,
+pub struct Detail {
+    pub contributors: Vec<String>,
+    pub diagrams: Vec<Diagram>,
+    pub diagram_top: u32,
+    pub reviewer: String,
+    pub threat_top: u32,
 }
 
 impl MappingFromVecInputDiagram for Detail {
