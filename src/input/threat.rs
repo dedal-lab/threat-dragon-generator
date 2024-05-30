@@ -68,4 +68,5 @@ pub struct Threat {
     pub type_field: TypeThreat,
     pub description: String,
     pub mitigation: String,
+    pub vector: String,
 }

@@ -2,9 +2,7 @@ use std::fmt::Display;
 
 use serde::{Deserialize, Serialize};
 
-use crate::{config::config::Config, threat_dragon_modeling::diagram::Diagram};
-
-use super::threat::Threat;
+use crate::config::config::Config;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

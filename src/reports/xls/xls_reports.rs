@@ -1,13 +1,13 @@
-use std::{
-    collections::HashMap,
-    path::{self, Path},
-};
+use std::{collections::HashMap, path::Path};
 
-use rust_xlsxwriter::{Table, TableColumn, TableStyle, Workbook, Worksheet};
+use rust_xlsxwriter::{Format, Table, TableColumn, TableStyle, Workbook, Worksheet};
 
 use crate::{
     config::config::{Config, TrustBoundary},
-    input::input_diagram::{InputDiagram, TypeNode},
+    input::{
+        input_diagram::{InputDiagram, TypeNode},
+        threat::Threat,
+    },
 };
 
 use super::excel_error::ExcelError;
@@ -16,11 +16,13 @@ pub fn create_reports(
     output_folder: &Path,
     input_diagram: &InputDiagram,
     config: &Config,
+    threats: &Vec<Threat>,
 ) -> Result<(), ExcelError> {
     let mut workbook = Workbook::new();
 
     create_entry_points_worksheet(&input_diagram, &mut workbook)?;
     create_trust_boundary_worksheet(&input_diagram, &config, &mut workbook)?;
+    create_threats_worksheet(&input_diagram, &threats, &mut workbook)?;
     let mut workbook_save_path = output_folder.join(&input_diagram.title);
     workbook_save_path.set_extension("xlsx");
     // Save the file to disk.
@@ -166,5 +168,67 @@ fn create_trust_boundary_worksheet(
     create_table(&headers, &data, entry_point_worksheet);
     entry_point_worksheet.autofit();
 
+    Ok(())
+}
+
+fn create_threats_worksheet(
+    input_diagram: &InputDiagram,
+    threats: &Vec<Threat>,
+    workbook: &mut Workbook,
+) -> Result<(), ExcelError> {
+    // Add a worksheet to the workbook.
+    let threats_worksheet = workbook.add_worksheet();
+
+    threats_worksheet
+        .set_name("Threats")
+        .map_err(|e| ExcelError::SetName(format!("{}", e)))?;
+
+    let column_titles = vec![
+        "ID".to_string(),
+        "Type".to_string(),
+        "STRIDE".to_string(),
+        "Description".to_string(),
+        "Vector".to_string(),
+        "Status".to_string(),
+        "Mitigations".to_string(),
+    ];
+
+    let mut data: Vec<Vec<String>> = Vec::new();
+
+    input_diagram.nodes.iter().for_each(|node| {
+        node.threats.iter().for_each(|threat_str| {
+            let threat = threats
+                .iter()
+                .filter(|threat| threat.title == *threat_str)
+                .last();
+            if let Some(threat) = threat {
+                data.push(vec![
+                    node.name.clone().to_string(),
+                    node.type_node.clone().to_string(),
+                    threat.type_field.clone().to_string(),
+                    threat.description.clone().to_string(),
+                    threat.vector.clone().to_string(),
+                    threat.status.clone().to_string(),
+                    threat.mitigation.clone().to_string(),
+                ]);
+            }
+        });
+    });
+
+    let format_text_wrap = Format::new().set_text_wrap();
+    create_table(&column_titles, &data, threats_worksheet);
+    threats_worksheet.autofit();
+    threats_worksheet
+        .set_column_width(3, 40)
+        .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
+    threats_worksheet
+        .set_column_format(3, &format_text_wrap)
+        .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
+    threats_worksheet
+        .set_column_width(6, 40)
+        .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
+    threats_worksheet
+        .set_column_format(6, &format_text_wrap)
+        .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
     Ok(())
 }
