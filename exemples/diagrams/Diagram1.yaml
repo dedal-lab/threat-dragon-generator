@@ -68,11 +68,20 @@ nodes:
     outOfScope: true
     trustBoundary: "Enablers2"
     threats: []
+  - name: PROM_PROC
+    type: flow
+    source: Prometheus      # Use field "name" defined inside the node source
+    destination: MyProcess  # Use field "name" defined inside the node destination
+    description: "Publish message"
+    trustLevel: "Administration"
+    threats:
+      - "New STRIDE threat"
   - name: PROC_RABBIT
     type: flow
     source: MyProcess      # Use field "name" defined inside the node source
     destination: RabbitMq  # Use field "name" defined inside the node destination
     description: "Publish message"
+    trustLevel: "Operational"
     threats:
       - "New STRIDE threat"
   - name: PROC_KAFKA
@@ -80,6 +89,7 @@ nodes:
     source: MyProcess      # Use field "name" defined inside the node source
     destination: Kafka  # Use field "name" defined inside the node destination
     description: "Publish message"
+    trustLevel: "Operational"
     threats:
       - "New STRIDE threat"
   - name: MINIO_PROC
@@ -87,5 +97,6 @@ nodes:
     source: Minio      # Use field "name" defined inside the node source
     destination: MyProcess  # Use field "name" defined inside the node destination
     description: "Publish message"
+    trustLevel: "Operational"
     threats:
       - "New STRIDE threat"

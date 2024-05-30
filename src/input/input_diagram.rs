@@ -26,6 +26,8 @@ pub struct Node {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub trust_boundary: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub trust_level: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub source: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub destination: Option<String>,

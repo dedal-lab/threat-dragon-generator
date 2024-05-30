@@ -93,12 +93,16 @@ fn create_entry_points_worksheet(
             } else {
                 "Unknown".to_string()
             };
+            let trust_level = match &node_flow.trust_level {
+                Some(trust_level) => trust_level.clone(),
+                None => "Unknown".to_string(),
+            };
 
             data.push(vec![
                 node_flow.name.clone(),
                 node_flow.name.clone(),
                 node_flow.description.clone(),
-                "Unknown".to_string(),
+                trust_level,
                 microservice,
             ]);
         });
