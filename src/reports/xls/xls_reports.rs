@@ -65,7 +65,6 @@ fn create_entry_points_worksheet(
 
     let column_titles = vec![
         "ID".to_string(),
-        "Name".to_string(),
         "Description".to_string(),
         "Trust Level".to_string(),
         "Microservice".to_string(),
@@ -102,7 +101,6 @@ fn create_entry_points_worksheet(
 
             data.push(vec![
                 node_flow.name.clone(),
-                node_flow.name.clone(),
                 node_flow.description.clone(),
                 trust_level,
                 microservice,
@@ -110,6 +108,13 @@ fn create_entry_points_worksheet(
         });
     create_table(&column_titles, &data, entry_point_worksheet);
     entry_point_worksheet.autofit();
+    let format_text_wrap = Format::new().set_text_wrap();
+    entry_point_worksheet
+        .set_column_width(1, 40)
+        .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
+    entry_point_worksheet
+        .set_column_format(1, &format_text_wrap)
+        .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
 
     Ok(())
 }
@@ -167,6 +172,13 @@ fn create_trust_boundary_worksheet(
         });
     create_table(&headers, &data, entry_point_worksheet);
     entry_point_worksheet.autofit();
+    let format_text_wrap = Format::new().set_text_wrap();
+    entry_point_worksheet
+        .set_column_width(1, 40)
+        .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
+    entry_point_worksheet
+        .set_column_format(1, &format_text_wrap)
+        .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
 
     Ok(())
 }
