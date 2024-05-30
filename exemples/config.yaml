@@ -19,7 +19,6 @@ diagrams:
       - MyProcess
       - RabbitMq
       - Prometheus
-      - Kafka
       - Minio
   - name: B2_Child_Data_Flow
     parent: B1_Diagram2

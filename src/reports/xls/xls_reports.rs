@@ -1,4 +1,7 @@
-use std::collections::HashMap;
+use std::{
+    collections::HashMap,
+    path::{self, Path},
+};
 
 use rust_xlsxwriter::{Table, TableColumn, TableStyle, Workbook, Worksheet};
 
@@ -9,21 +12,45 @@ use crate::{
 
 use super::excel_error::ExcelError;
 
-pub fn create_reports(input_diagram: &InputDiagram, config: &Config) -> Result<(), ExcelError> {
+pub fn create_reports(
+    output_folder: &Path,
+    input_diagram: &InputDiagram,
+    config: &Config,
+) -> Result<(), ExcelError> {
     let mut workbook = Workbook::new();
 
     create_entry_points_worksheet(&input_diagram, &mut workbook)?;
     create_trust_boundary_worksheet(&input_diagram, &config, &mut workbook)?;
-
+    let mut workbook_save_path = output_folder.join(&input_diagram.title);
+    workbook_save_path.set_extension("xlsx");
     // Save the file to disk.
     workbook
-        .save("demo.xlsx")
+        .save(workbook_save_path)
         .map_err(|e| ExcelError::Save(format!("{}", e)))?;
 
     Ok(())
 }
 
-pub fn create_entry_points_worksheet(
+fn create_table(headers: &Vec<String>, data: &Vec<Vec<String>>, worksheet: &mut Worksheet) {
+    // Create a new table and configure it.
+    let data_size = data.len();
+    let titles: Vec<TableColumn> = headers
+        .iter()
+        .map(|header| TableColumn::new().set_header(header))
+        .collect();
+    worksheet.write_row_matrix(1, 0, data).unwrap();
+    let table = Table::new()
+        .set_banded_rows(true)
+        .set_style(TableStyle::Medium23)
+        .set_columns(&titles)
+        .set_total_row(false);
+
+    worksheet
+        .add_table(0, 0, (data_size) as u32, (titles.len() - 1) as u16, &table)
+        .unwrap();
+}
+
+fn create_entry_points_worksheet(
     input_diagram: &InputDiagram,
     workbook: &mut Workbook,
 ) -> Result<(), ExcelError> {
@@ -81,7 +108,7 @@ pub fn create_entry_points_worksheet(
     Ok(())
 }
 
-pub fn create_trust_boundary_worksheet(
+fn create_trust_boundary_worksheet(
     input_diagram: &InputDiagram,
     config: &Config,
     workbook: &mut Workbook,
@@ -136,23 +163,4 @@ pub fn create_trust_boundary_worksheet(
     entry_point_worksheet.autofit();
 
     Ok(())
-}
-
-fn create_table(headers: &Vec<String>, data: &Vec<Vec<String>>, worksheet: &mut Worksheet) {
-    // Create a new table and configure it.
-    let data_size = data.len();
-    let titles: Vec<TableColumn> = headers
-        .iter()
-        .map(|header| TableColumn::new().set_header(header))
-        .collect();
-    worksheet.write_row_matrix(1, 0, data).unwrap();
-    let table = Table::new()
-        .set_banded_rows(true)
-        .set_style(TableStyle::Medium23)
-        .set_columns(&titles)
-        .set_total_row(false);
-
-    worksheet
-        .add_table(0, 0, (data_size) as u32, (titles.len() - 1) as u16, &table)
-        .unwrap();
 }

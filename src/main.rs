@@ -76,8 +76,9 @@ fn main() {
             let writer = BufWriter::new(json_model_file);
             serde_json::to_writer_pretty(writer, &new_threat_modeling).unwrap();
 
-            xls_reports::create_reports(&threat_model_diagram_list.get(0).unwrap(), &config)
-                .unwrap();
+            threat_model_diagram_list.iter().for_each(|diagram| {
+                xls_reports::create_reports(output_folder_path, &diagram, &config).unwrap()
+            });
         }
     };
 }
