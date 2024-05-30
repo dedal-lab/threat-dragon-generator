@@ -25,6 +25,7 @@ pub struct TrustBoundary {
 pub struct Diagrams {
     pub name: String,
     pub parent: String,
+    pub description: String,
     pub nodes: Vec<String>,
 }
 

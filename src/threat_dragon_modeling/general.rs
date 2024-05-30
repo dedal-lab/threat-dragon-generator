@@ -71,34 +71,15 @@ impl MappingFromVecInputDiagram for Detail {
         config: &Config,
         threats: &Vec<Threat>,
     ) -> Self {
-        let mut json_diagram: BTreeMap<String, Diagram> = input_diagram
+        let json_diagram: BTreeMap<String, Diagram> = input_diagram
             .iter()
             .map(|input_diagram| {
                 (
                     input_diagram.title.clone(),
-                    Diagram::from_input_diagram(&input_diagram, &config, None, threats),
+                    Diagram::from_input_diagram(&input_diagram, &config, threats),
                 )
             })
             .collect();
-
-        config.diagrams.iter().for_each(|config_diagram| {
-            let diagram_parent = input_diagram
-                .iter()
-                .filter(|input_diagram| input_diagram.title == config_diagram.parent)
-                .last();
-            // Add childs diagrams
-            if let Some(parent) = diagram_parent {
-                json_diagram.insert(
-                    format!("{}_{}", parent.title.clone(), config_diagram.name.clone()),
-                    Diagram::from_input_diagram(
-                        &parent,
-                        &config,
-                        Some(config_diagram.name.clone()),
-                        threats,
-                    ),
-                );
-            }
-        });
 
         Self {
             contributors: Vec::new(),

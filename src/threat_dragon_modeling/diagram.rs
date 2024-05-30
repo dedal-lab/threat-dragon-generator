@@ -34,91 +34,26 @@ impl MappingFromInputDiagram for Diagram {
     fn from_input_diagram(
         input_diagram: &InputDiagram,
         config: &Config,
-        sub_diagram: Option<String>,
         threats: &Vec<Threat>,
     ) -> Self {
         let mut cells = input_diagram
             .nodes
             .iter()
-            .filter(|input_node| display_child_diagram_node(&sub_diagram, config, input_node))
             .map(|input_node| Cell::from_input_diagram(&input_node, &config, threats))
             .collect();
         Self::update_source_and_destination(&mut cells, &input_diagram);
         Self::update_cells_position(&mut cells, &input_diagram);
         Self::add_trust_boundaries(&mut cells, input_diagram);
-        let title = match sub_diagram {
-            Some(sub_diagram_title) => sub_diagram_title.clone(),
-            None => input_diagram.title.clone(),
-        };
+
         Self {
             id: 0,
-            title,
+            title: input_diagram.title.clone(),
             diagram_type: "STRIDE".to_string(),
             placeholder: input_diagram.description.clone(),
             thumbnail: "./public/content/images/thumbnail.stride.jpg".to_string(),
             version: config.threat_dragon_version.clone(),
             cells,
         }
-    }
-}
-
-fn display_child_diagram_node(
-    sub_diagram: &Option<String>,
-    config: &Config,
-    input_node: &&Node,
-) -> bool {
-    if let Some(sub_diagram) = sub_diagram.clone() {
-        let config_diagram = config
-            .diagrams
-            .iter()
-            .filter(|config_diagram| config_diagram.name == sub_diagram)
-            .last();
-        return is_input_node_in_child_diagram(config_diagram, input_node);
-    } else {
-        return true;
-    }
-}
-
-fn is_input_node_in_child_diagram(
-    config_diagram: Option<&crate::config::config::Diagrams>,
-    input_node: &&Node,
-) -> bool {
-    if let Some(config_diagram) = config_diagram {
-        if let Some(input_source) = &input_node.source {
-            if let Some(input_dest) = &input_node.destination {
-                return are_source_and_destination_in_child_view(
-                    config_diagram,
-                    input_source,
-                    input_dest,
-                );
-            } else {
-                return false;
-            }
-        } else {
-            return config_diagram
-                .nodes
-                .iter()
-                .any(|config_node| *config_node == input_node.name.clone());
-        }
-    } else {
-        return true;
-    }
-}
-
-fn are_source_and_destination_in_child_view(
-    config_diagram: &crate::config::config::Diagrams,
-    input_source: &String,
-    input_dest: &String,
-) -> bool {
-    let source_and_dest_in_config: Vec<&String> = config_diagram
-        .nodes
-        .iter()
-        .filter(|config_node| *config_node == input_source || *config_node == input_dest)
-        .collect();
-    if source_and_dest_in_config.len() == 2 {
-        return true;
-    } else {
-        return false;
     }
 }
 

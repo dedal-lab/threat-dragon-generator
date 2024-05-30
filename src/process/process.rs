@@ -10,7 +10,6 @@ pub trait MappingFromInputDiagram {
     fn from_input_diagram(
         input_diagram: &InputDiagram,
         config: &Config,
-        sub_diagram: Option<String>,
         threats: &Vec<Threat>,
     ) -> Self;
 }

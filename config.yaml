@@ -14,6 +14,7 @@ trustBoundaries:
 diagrams:
   - name: A2_Child_Data_Flow
     parent: A1_Diagram1
+    description: ""
     nodes:
       - MyProcess
       - RabbitMq
@@ -22,6 +23,7 @@ diagrams:
       - Minio
   - name: B2_Child_Data_Flow
     parent: B1_Diagram2
+    description: ""
     nodes:
       - MyProcess
       - RabbitMq2

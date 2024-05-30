@@ -1,7 +1,9 @@
 use std::{
     env,
     fs::{self, File},
-    io::{BufReader, BufWriter},
+    io::{BufReader, BufWriter, ErrorKind},
+    path::{self, Path},
+    result,
 };
 
 use input::threat::Threat;
@@ -28,12 +30,12 @@ fn main() {
     let file = File::open(config_path.unwrap()).unwrap();
     let reader = BufReader::new(file);
     let config: Config = serde_yaml::from_reader(reader).unwrap();
-    println!("{:?}", config);
+    // println!("{:?}", config);
 
     let file = File::open(threat_path.unwrap()).unwrap();
     let reader = BufReader::new(file);
     let threat_list: Vec<Threat> = serde_yaml::from_reader(reader).unwrap();
-    println!("{:?}", threat_list);
+    // println!("{:?}", threat_list);
 
     let entries = fs::read_dir(&diagram_path.unwrap())
         .unwrap()
@@ -45,16 +47,37 @@ fn main() {
     for entry in entries {
         let content = fs::read_to_string(&entry.path()).unwrap();
         let threat_model_yaml: InputDiagram = serde_yaml::from_str(&content).unwrap();
-        println!("{:#?}", threat_model_yaml);
+        // println!("{:#?}", threat_model_yaml);
+        let childs = threat_model_yaml.create_child_diagrams(&config);
         threat_model_diagram_list.push(threat_model_yaml);
+        childs
+            .iter()
+            .for_each(|child| threat_model_diagram_list.push(child.clone()));
+        // println!("{:#?}", childs);
     }
 
-    let json_model_output = output_path.unwrap();
+    let model_output = output_path.unwrap();
     let new_threat_modeling =
         ThreatModeling::new(&threat_model_diagram_list, &config, &threat_list);
-    let output_file = File::create(json_model_output).unwrap();
-    let writer = BufWriter::new(output_file);
-    serde_json::to_writer_pretty(writer, &new_threat_modeling).unwrap();
 
-    xls_reports::create_reports(&threat_model_diagram_list.get(0).unwrap(), &config).unwrap();
+    let output_folder_path = Path::new(&model_output);
+    let result = fs::create_dir_all(output_folder_path);
+    if let Err(result) = result {
+        if result.kind() != ErrorKind::AlreadyExists {
+            panic!("{}", result);
+        }
+    }
+
+    if let Some(directory) = output_folder_path.file_name() {
+        if let Some(directory_str) = directory.to_str() {
+            let mut json_model_fullpath = output_folder_path.join(directory_str);
+            json_model_fullpath.set_extension("json");
+            let json_model_file = File::create(json_model_fullpath).unwrap();
+            let writer = BufWriter::new(json_model_file);
+            serde_json::to_writer_pretty(writer, &new_threat_modeling).unwrap();
+
+            xls_reports::create_reports(&threat_model_diagram_list.get(0).unwrap(), &config)
+                .unwrap();
+        }
+    };
 }
