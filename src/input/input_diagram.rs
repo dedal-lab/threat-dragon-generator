@@ -29,6 +29,8 @@ pub struct Node {
     pub source: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub destination: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub asset: Option<String>,
     pub threats: Vec<String>,
 }
 

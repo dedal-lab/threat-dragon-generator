@@ -8,6 +8,7 @@ pub struct Config {
     pub owner: String,
     pub description: String,
     pub trust_boundaries: Vec<TrustBoundary>,
+    pub assets: Vec<Asset>,
     pub diagrams: Vec<Diagrams>,
 }
 
@@ -27,6 +28,13 @@ pub struct Diagrams {
     pub parent: String,
     pub description: String,
     pub nodes: Vec<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct Asset {
+    pub name: String,
+    pub description: String,
 }
 
 #[derive(Debug, Clone)]

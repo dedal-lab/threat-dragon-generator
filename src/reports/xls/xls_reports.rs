@@ -3,9 +3,9 @@ use std::{collections::HashMap, path::Path};
 use rust_xlsxwriter::{Format, Table, TableColumn, TableStyle, Workbook, Worksheet};
 
 use crate::{
-    config::config::{Config, TrustBoundary},
+    config::config::{Asset, Config, TrustBoundary},
     input::{
-        input_diagram::{InputDiagram, TypeNode},
+        input_diagram::{InputDiagram, Node, TypeNode},
         threat::Threat,
     },
 };
@@ -20,8 +20,10 @@ pub fn create_reports(
 ) -> Result<(), ExcelError> {
     let mut workbook = Workbook::new();
 
+    create_software_worksheet(&input_diagram, &mut workbook)?;
     create_entry_points_worksheet(&input_diagram, &mut workbook)?;
     create_trust_boundary_worksheet(&input_diagram, &config, &mut workbook)?;
+    create_assets_worksheet(&input_diagram, &config, &mut workbook)?;
     create_threats_worksheet(&input_diagram, &threats, &mut workbook)?;
     let mut workbook_save_path = output_folder.join(&input_diagram.title);
     workbook_save_path.set_extension("xlsx");
@@ -241,6 +243,102 @@ fn create_threats_worksheet(
         .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
     threats_worksheet
         .set_column_format(6, &format_text_wrap)
+        .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
+    Ok(())
+}
+
+fn create_software_worksheet(
+    input_diagram: &InputDiagram,
+    workbook: &mut Workbook,
+) -> Result<(), ExcelError> {
+    // Add a worksheet to the workbook.
+    let software_worksheet = workbook.add_worksheet();
+
+    software_worksheet
+        .set_name("Software Component")
+        .map_err(|e| ExcelError::SetName(format!("{}", e)))?;
+
+    let column_titles = vec![
+        "Name".to_string(),
+        "Description".to_string(),
+        "Trust Level".to_string(),
+    ];
+
+    let mut data: Vec<Vec<String>> = Vec::new();
+
+    input_diagram
+        .nodes
+        .iter()
+        .filter(|node| node.type_node == TypeNode::Process)
+        .for_each(|node_process| {
+            let mut row: Vec<String> = Vec::new();
+            row.push(node_process.name.clone());
+            row.push(node_process.description.clone());
+            row.push(node_process.trust_level.clone().unwrap_or("".to_string()));
+            data.push(row);
+        });
+    create_table(&column_titles, &data, software_worksheet);
+    software_worksheet.autofit();
+    let format_text_wrap = Format::new().set_text_wrap();
+    software_worksheet
+        .set_column_width(1, 40)
+        .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
+    software_worksheet
+        .set_column_format(1, &format_text_wrap)
+        .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
+    Ok(())
+}
+
+fn create_assets_worksheet(
+    input_diagram: &InputDiagram,
+    config: &Config,
+    workbook: &mut Workbook,
+) -> Result<(), ExcelError> {
+    // Add a worksheet to the workbook.
+    let asset_worksheet = workbook.add_worksheet();
+
+    asset_worksheet
+        .set_name("Asset worksheet")
+        .map_err(|e| ExcelError::SetName(format!("{}", e)))?;
+
+    let column_titles = vec!["Name".to_string(), "Description".to_string()];
+
+    let mut asset_map: HashMap<String, Asset> = HashMap::new();
+
+    input_diagram
+        .nodes
+        .iter()
+        .filter(|node| node.type_node == TypeNode::Flow)
+        .for_each(|node_flow| {
+            if let Some(node_flow_asset) = node_flow.asset.clone() {
+                let asset = config
+                    .assets
+                    .iter()
+                    .filter(|asset_config| asset_config.name == node_flow_asset)
+                    .last();
+
+                if let Some(asset) = asset {
+                    asset_map.insert(node_flow_asset, asset.clone());
+                }
+            }
+        });
+    let mut data: Vec<Vec<String>> = Vec::new();
+
+    asset_map.iter().for_each(|(_key, value)| {
+        let mut row: Vec<String> = Vec::new();
+        row.push(value.name.clone());
+        row.push(value.description.clone());
+        data.push(row);
+    });
+
+    create_table(&column_titles, &data, asset_worksheet);
+    asset_worksheet.autofit();
+    let format_text_wrap = Format::new().set_text_wrap();
+    asset_worksheet
+        .set_column_width(1, 40)
+        .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
+    asset_worksheet
+        .set_column_format(1, &format_text_wrap)
         .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
     Ok(())
 }

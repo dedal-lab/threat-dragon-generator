@@ -11,6 +11,9 @@ trustBoundaries:
     description: "Enabler services provided"
     limitOfAccess: "Operational"
     levelOfAuthorization: "Application data"
+assets:
+  - name: OpenApi
+    description: "OpenApi messages"
 diagrams:
   - name: A2_Child_Data_Flow
     parent: A1_Diagram1
