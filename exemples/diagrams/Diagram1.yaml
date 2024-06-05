@@ -5,6 +5,7 @@ nodes:
     type: process
     description: "Ecoute"
     outOfScope: false
+    trustLevel: "Operational"
     threats:
       - "New STRIDE threat"
       - "New STRIDE threat 2"
@@ -13,60 +14,70 @@ nodes:
     description: "Message broker"
     outOfScope: true
     trustBoundary: Enablers
+    trustLevel: "Operational"
     threats: []
   - name: Prometheus
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers"
+    trustLevel: "Operational"
     threats: []
   - name: Kafka
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers"
+    trustLevel: "Operational"
     threats: []
   - name: Minio
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers"
+    trustLevel: "Operational"
     threats: []
   - name: Postgres
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers"
+    trustLevel: "Operational"
     threats: []
   - name: influxdb
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers"
+    trustLevel: "Operational"
     threats: []
   - name: RabbitMq2
     type: process
     description: "Message broker"
     outOfScope: true
     trustBoundary: "Enablers2"
+    trustLevel: "Operational"
     threats: []
   - name: Prometheus2
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers2"
+    trustLevel: "Operational"
     threats: []
   - name: Kafka2
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers2"
+    trustLevel: "Operational"
     threats: []
   - name: Minio2
     type: process
     description: "Metrics server"
     outOfScope: true
     trustBoundary: "Enablers2"
+    trustLevel: "Operational"
     threats: []
   - name: PROM_PROC
     type: flow
@@ -81,6 +92,7 @@ nodes:
     source: MyProcess      # Use field "name" defined inside the node source
     destination: RabbitMq  # Use field "name" defined inside the node destination
     description: "Publish message"
+    asset: OpenApi
     trustLevel: "Operational"
     threats:
       - "New STRIDE threat"
@@ -89,6 +101,7 @@ nodes:
     source: MyProcess      # Use field "name" defined inside the node source
     destination: Kafka  # Use field "name" defined inside the node destination
     description: "Publish message"
+    asset: OpenApi
     trustLevel: "Operational"
     threats:
       - "New STRIDE threat"
@@ -97,6 +110,7 @@ nodes:
     source: Minio      # Use field "name" defined inside the node source
     destination: MyProcess  # Use field "name" defined inside the node destination
     description: "Publish message"
+    asset: OpenApi
     trustLevel: "Operational"
     threats:
       - "New STRIDE threat"
