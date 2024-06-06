@@ -5,7 +5,7 @@ use rust_xlsxwriter::{Format, Table, TableColumn, TableStyle, Workbook, Workshee
 use crate::{
     config::config::{Asset, Config, TrustBoundary},
     input::{
-        input_diagram::{InputDiagram, Node, TypeNode},
+        input_diagram::{InputDiagram, TypeNode},
         threat::Threat,
     },
 };
@@ -25,6 +25,7 @@ pub fn create_reports(
     create_trust_boundary_worksheet(&input_diagram, &config, &mut workbook)?;
     create_assets_worksheet(&input_diagram, &config, &mut workbook)?;
     create_threats_worksheet(&input_diagram, &threats, &mut workbook)?;
+    create_vectors_worksheet(&input_diagram, &threats, &mut workbook)?;
     let mut workbook_save_path = output_folder.join(&input_diagram.title);
     workbook_save_path.set_extension("xlsx");
     // Save the file to disk.
@@ -67,7 +68,9 @@ fn create_entry_points_worksheet(
 
     let column_titles = vec![
         "ID".to_string(),
+        "Direction".to_string(),
         "Description".to_string(),
+        "Asset Name".to_string(),
         "Trust Level".to_string(),
         "Microservice".to_string(),
     ];
@@ -89,21 +92,22 @@ fn create_entry_points_worksheet(
                 .iter()
                 .filter(|node| node.name == node_flow.destination.clone().unwrap())
                 .last();
-            let microservice = if !node_source.unwrap().out_of_scope.unwrap() {
-                node_source.unwrap().name.clone()
+            let (microservice, direction) = if !node_source.unwrap().out_of_scope.unwrap() {
+                (node_source.unwrap().name.clone(), "Exit".to_string())
             } else if !node_dest.unwrap().out_of_scope.unwrap() {
-                node_dest.unwrap().name.clone()
+                (node_dest.unwrap().name.clone(), "Entry".to_string())
             } else {
-                "Unknown".to_string()
+                ("Unknown".to_string(), "".to_string())
             };
             let trust_level = match &node_flow.trust_level {
                 Some(trust_level) => trust_level.clone(),
                 None => "Unknown".to_string(),
             };
-
             data.push(vec![
                 node_flow.name.clone(),
+                direction,
                 node_flow.description.clone(),
+                node_flow.asset.clone().unwrap_or("".to_string()),
                 trust_level,
                 microservice,
             ]);
@@ -112,10 +116,10 @@ fn create_entry_points_worksheet(
     entry_point_worksheet.autofit();
     let format_text_wrap = Format::new().set_text_wrap();
     entry_point_worksheet
-        .set_column_width(1, 40)
+        .set_column_width(2, 40)
         .map_err(|e| ExcelError::SetColumnWidth(format!("{}", e)))?;
     entry_point_worksheet
-        .set_column_format(1, &format_text_wrap)
+        .set_column_format(2, &format_text_wrap)
         .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
 
     Ok(())
@@ -340,5 +344,43 @@ fn create_assets_worksheet(
     asset_worksheet
         .set_column_format(1, &format_text_wrap)
         .map_err(|e| ExcelError::WriteWithFormat(format!("{}", e)))?;
+    Ok(())
+}
+
+fn create_vectors_worksheet(
+    input_diagram: &InputDiagram,
+    threats: &Vec<Threat>,
+    workbook: &mut Workbook,
+) -> Result<(), ExcelError> {
+    let vectors_worksheet = workbook.add_worksheet();
+
+    vectors_worksheet
+        .set_name("Vectors")
+        .map_err(|e| ExcelError::SetName(format!("{}", e)))?;
+
+    let column_titles = vec!["Name".to_string()];
+
+    let mut vector_map: HashMap<String, String> = HashMap::new();
+
+    input_diagram.nodes.iter().for_each(|node| {
+        node.threats.iter().for_each(|threat_str| {
+            let threat = threats
+                .iter()
+                .filter(|threat| threat.title == *threat_str)
+                .last();
+            if let Some(threat) = threat {
+                vector_map.insert(threat.vector.clone(), threat.vector.clone());
+            }
+        });
+    });
+
+    let vectorl_list: Vec<Vec<String>> = vector_map
+        .iter()
+        .map(|(index, _value)| vec![index.clone()])
+        .collect();
+
+    create_table(&column_titles, &vectorl_list, vectors_worksheet);
+    vectors_worksheet.autofit();
+
     Ok(())
 }
