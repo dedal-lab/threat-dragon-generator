@@ -266,6 +266,7 @@ fn create_software_worksheet(
         "Name".to_string(),
         "Description".to_string(),
         "Trust Level".to_string(),
+        "Out of scope".to_string(),
     ];
 
     let mut data: Vec<Vec<String>> = Vec::new();
@@ -276,9 +277,19 @@ fn create_software_worksheet(
         .filter(|node| node.type_node == TypeNode::Process)
         .for_each(|node_process| {
             let mut row: Vec<String> = Vec::new();
+            let out_of_scope = if let Some(out_of_scope) = node_process.out_of_scope.clone() {
+                if out_of_scope {
+                    "Yes".to_string()
+                } else {
+                    "No".to_string()
+                }
+            } else {
+                "".to_string()
+            };
             row.push(node_process.name.clone());
             row.push(node_process.description.clone());
             row.push(node_process.trust_level.clone().unwrap_or("".to_string()));
+            row.push(out_of_scope);
             data.push(row);
         });
     create_table(&column_titles, &data, software_worksheet);
