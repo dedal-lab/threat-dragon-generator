@@ -1,12 +1,12 @@
-title: "A1_Diagram1"
+title: "A1_Diagram1" # Diagram title
 description: "Diagram1 STRIDE modeling"
 nodes:
-  - name: MyProcess
-    type: process
-    description: "Ecoute"
-    outOfScope: false
-    trustLevel: "Operational"
-    threats:
+  - name: MyProcess # Process name
+    type: process # Type of node, process or flow
+    description: "Ecoute" # Node description
+    outOfScope: false # If the node is out of scope or not
+    trustLevel: "Operational" # The level of access required to access the entry point
+    threats: # List of node threats (threats defined in threat.yaml)
       - "New STRIDE threat"
       - "New STRIDE threat 2"
   - name: RabbitMq
@@ -79,18 +79,18 @@ nodes:
     trustBoundary: "Enablers2"
     trustLevel: "Operational"
     threats: []
-  - name: PROM_PROC
-    type: flow
-    source: Prometheus      # Use field "name" defined inside the node source
-    destination: MyProcess  # Use field "name" defined inside the node destination
-    description: "Publish message"
-    trustLevel: "Administration"
-    threats:
+  - name: PROM_PROC # Flow name
+    type: flow # Type of node, process or flow
+    source: Prometheus # Use field "name" defined inside the node source
+    destination: MyProcess # Use field "name" defined inside the node destination
+    description: "Publish message" # Flow description
+    trustLevel: "Administration" # Level access of the entry point
+    threats: # List of node threats (threats defined in threat.yaml)
       - "New STRIDE threat"
   - name: PROC_RABBIT
     type: flow
-    source: MyProcess      # Use field "name" defined inside the node source
-    destination: RabbitMq  # Use field "name" defined inside the node destination
+    source: MyProcess # Use field "name" defined inside the node source
+    destination: RabbitMq # Use field "name" defined inside the node destination
     description: "Publish message"
     asset: OpenApi
     trustLevel: "Operational"
@@ -98,8 +98,8 @@ nodes:
       - "New STRIDE threat"
   - name: PROC_KAFKA
     type: flow
-    source: MyProcess      # Use field "name" defined inside the node source
-    destination: Kafka  # Use field "name" defined inside the node destination
+    source: MyProcess # Use field "name" defined inside the node source
+    destination: Kafka # Use field "name" defined inside the node destination
     description: "Publish message"
     asset: OpenApi
     trustLevel: "Operational"
@@ -107,8 +107,8 @@ nodes:
       - "New STRIDE threat"
   - name: MINIO_PROC
     type: flow
-    source: Minio      # Use field "name" defined inside the node source
-    destination: MyProcess  # Use field "name" defined inside the node destination
+    source: Minio # Use field "name" defined inside the node source
+    destination: MyProcess # Use field "name" defined inside the node destination
     description: "Publish message"
     asset: OpenApi
     trustLevel: "Operational"
