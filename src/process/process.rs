@@ -8,6 +8,7 @@ use crate::{
 
 pub trait MappingFromInputDiagram {
     fn from_input_diagram(
+        index: usize,
         input_diagram: &InputDiagram,
         config: &Config,
         threats: &Vec<Threat>,

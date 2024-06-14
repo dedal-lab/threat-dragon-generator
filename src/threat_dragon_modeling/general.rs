@@ -73,10 +73,11 @@ impl MappingFromVecInputDiagram for Detail {
     ) -> Self {
         let json_diagram: BTreeMap<String, Diagram> = input_diagram
             .iter()
-            .map(|input_diagram| {
+            .enumerate()
+            .map(|(index, input_diagram)| {
                 (
                     input_diagram.title.clone(),
-                    Diagram::from_input_diagram(&input_diagram, &config, threats),
+                    Diagram::from_input_diagram(index, &input_diagram, &config, threats),
                 )
             })
             .collect();

@@ -32,6 +32,7 @@ pub struct Diagram {
 
 impl MappingFromInputDiagram for Diagram {
     fn from_input_diagram(
+        index: usize,
         input_diagram: &InputDiagram,
         config: &Config,
         threats: &Vec<Threat>,
@@ -46,7 +47,7 @@ impl MappingFromInputDiagram for Diagram {
         Self::add_trust_boundaries(&mut cells, input_diagram);
 
         Self {
-            id: 0,
+            id: index as u32,
             title: input_diagram.title.clone(),
             diagram_type: "STRIDE".to_string(),
             placeholder: input_diagram.description.clone(),
