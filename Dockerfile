@@ -1,5 +1,5 @@
 # Étape de construction avec une image Rust officielle
-FROM rust:latest as builder
+FROM ekidd/rust-musl-builder as builder
 
 # Définir le répertoire de travail
 WORKDIR /app
