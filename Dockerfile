@@ -26,7 +26,7 @@ FROM scratch
 COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/threat-dragon-generator /usr/local/bin/threat-dragon-generator
 
 # Définir le point d'entrée de l'image
-# ENTRYPOINT ["/usr/local/bin/threat-dragon-generator"]
+ENTRYPOINT ["/usr/local/bin/threat-dragon-generator"]
 
 # Définir les volumes pour le partage de fichiers
 VOLUME ["/workdir"]
