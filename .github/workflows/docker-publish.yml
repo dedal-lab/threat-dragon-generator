@@ -2,12 +2,14 @@ name: Docker
 
 on:
   push:
-    tags: [ '*' ]
+    branches:
+      - feature/docker-publish
+    # tags: [ '*' ]
 
 env:
   REGISTRY: docker.io
   # <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: threatdragongenerator/threat-dragon-generator
 
 
 jobs:
@@ -34,4 +36,4 @@ jobs:
           push: true
           tags: |
             ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{  github.ref_name }}
+            # ${{ env.IMAGE_NAME }}:${{  github.ref_name }}
