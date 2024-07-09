@@ -11,11 +11,6 @@ COPY . .
 RUN rustup target add x86_64-unknown-linux-musl
 RUN apt-get update && apt-get install -y musl-tools
 
-# Set the appropriate environment variables
-ENV CC=musl-gcc
-ENV CXX=musl-g++
-ENV RUSTFLAGS='-C linker=musl-gcc'
-
 # Compiler l'application en mode release avec une cible musl
 RUN cargo build --release --target x86_64-unknown-linux-musl
 
@@ -26,7 +21,7 @@ FROM scratch
 COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/threat-dragon-generator /usr/local/bin/threat-dragon-generator
 
 # Définir le point d'entrée de l'image
-# ENTRYPOINT ["/threat-dragon-generator"]
+# ENTRYPOINT ["/usr/local/bin/threat-dragon-generator"]
 
 # Définir les volumes pour le partage de fichiers
 VOLUME ["/workdir"]
